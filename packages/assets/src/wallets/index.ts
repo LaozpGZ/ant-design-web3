@@ -21,3 +21,4 @@ export * from './petra';
 export * from './aptos-connect';
 export * from './msafe';
 export * from './rimo-safe';
+export * from './okx-aptos';

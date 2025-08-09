@@ -3,11 +3,17 @@ import {
   metadata_Petra, 
   metadata_AptosConnect, 
   metadata_MSafe, 
-  metadata_RimoSafe 
+  metadata_RimoSafe,
+  metadata_OKXAptos
 } from '@ant-design/web3-assets';
 import type { AptosWalletConfig } from './types';
 import { walletFactory } from './factory';
-import { PetraWalletAdapter, AptosConnectAdapter } from './adapters';
+import { 
+  PetraWalletAdapter, 
+  AptosConnectAdapter, 
+  OKXWalletAdapter,
+  MSafeWalletAdapter 
+} from './adapters';
 
 // Petra Wallet Configuration
 export const petra: AptosWalletConfig = {
@@ -25,25 +31,12 @@ export const aptosConnect: AptosWalletConfig = {
   adapter: new AptosConnectAdapter(),
 };
 
-// OKX Wallet Configuration (placeholder)
+// OKX Wallet Configuration
 export const okx: AptosWalletConfig = {
+  ...metadata_OKXAptos,
   key: 'okx',
-  name: 'OKX Wallet',
-  remark: 'OKX multi-chain wallet with Aptos support',
-  icon: 'https://www.okx.com/favicon.ico', // Will be replaced with local assets
-  extensions: [
-    {
-      key: 'Chrome',
-      browserIcon: 'https://github.com/google/chrome/raw/main/chrome/app/theme/default/product_logo_16.png',
-      browserName: 'Chrome',
-      link: 'https://chrome.google.com/webstore/detail/okx-wallet/mcohilncbfahbmgdjkbpemcciiolgcge',
-      description: 'Access your OKX wallet right from your browser',
-    },
-  ],
-  app: {
-    link: 'https://www.okx.com/web3',
-  },
   supportChainTypes: [ChainType.SVM],
+  adapter: new OKXWalletAdapter(),
 };
 
 // MSafe Wallet Configuration
@@ -51,6 +44,7 @@ export const msafe: AptosWalletConfig = {
   ...metadata_MSafe,
   key: 'msafe',
   supportChainTypes: [ChainType.SVM],
+  adapter: new MSafeWalletAdapter(),
 };
 
 // RimoSafe Wallet Configuration

@@ -4,6 +4,7 @@ export * from './chains';
 export * from './wallets/factory';
 export * from './wallets/built-in';
 export * from './wallets/types';
+export * from './wallets/adapters';
 export * from './types';
 export * from './utils';
 

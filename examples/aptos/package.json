@@ -1,0 +1,27 @@
+{
+  "name": "@example/aptos",
+  "private": true,
+  "version": "1.0.0",
+  "author": "Ant Design Web3 Team",
+  "type": "module",
+  "scripts": {
+    "dev": "umi dev",
+    "build": "umi build",
+    "postinstall": "umi setup",
+    "setup": "umi setup"
+  },
+  "dependencies": {
+    "@ant-design/web3": "workspace:*",
+    "@ant-design/web3-assets": "workspace:*",
+    "@ant-design/web3-common": "workspace:*",
+    "@ant-design/web3-aptos": "workspace:*",
+    "@aptos-labs/ts-sdk": "^3.1.3",
+    "antd": "^5.22.7",
+    "umi": "^4.4.10"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.1",
+    "typescript": "^5.6.2"
+  }
+}

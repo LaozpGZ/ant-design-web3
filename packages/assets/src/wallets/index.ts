@@ -15,3 +15,9 @@ export * from './mobile-wallet';
 export * from './slush';
 export * from './suiet';
 export * from './solflare';
+
+// Aptos wallets
+export * from './petra';
+export * from './aptos-connect';
+export * from './msafe';
+export * from './rimo-safe';

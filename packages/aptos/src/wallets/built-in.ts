@@ -1,40 +1,26 @@
 import { ChainType } from '@ant-design/web3-common';
+import { 
+  metadata_Petra, 
+  metadata_AptosConnect, 
+  metadata_MSafe, 
+  metadata_RimoSafe 
+} from '@ant-design/web3-assets';
 import type { AptosWalletConfig } from './types';
 import { walletFactory } from './factory';
 import { PetraWalletAdapter, AptosConnectAdapter } from './adapters';
 
 // Petra Wallet Configuration
 export const petra: AptosWalletConfig = {
+  ...metadata_Petra,
   key: 'petra',
-  name: 'Petra Wallet',
-  remark: 'The official Aptos wallet for web3',
-  icon: 'https://petra.app/favicon.ico', // Will be replaced with local assets
-  extensions: [
-    {
-      key: 'Chrome',
-      browserIcon: 'https://github.com/google/chrome/raw/main/chrome/app/theme/default/product_logo_16.png',
-      browserName: 'Chrome',
-      link: 'https://chrome.google.com/webstore/detail/petra-aptos-wallet/ejjladinnckdgjemekebdpeokbikhfci',
-      description: 'Access your Petra wallet right from your browser',
-    },
-  ],
-  app: {
-    link: 'https://petra.app/',
-  },
   supportChainTypes: [ChainType.SVM], // Aptos uses similar VM concepts
   adapter: new PetraWalletAdapter(),
 };
 
 // AptosConnect Configuration
 export const aptosConnect: AptosWalletConfig = {
+  ...metadata_AptosConnect,
   key: 'aptosConnect',
-  name: 'AptosConnect',
-  remark: 'Connect with Google or Apple account',
-  icon: 'https://aptosconnect.app/favicon.ico', // Will be replaced with local assets
-  extensions: false, // AptosConnect doesn't require browser extension
-  app: {
-    link: 'https://aptosconnect.app/',
-  },
   supportChainTypes: [ChainType.SVM],
   adapter: new AptosConnectAdapter(),
 };
@@ -60,16 +46,17 @@ export const okx: AptosWalletConfig = {
   supportChainTypes: [ChainType.SVM],
 };
 
-// MSafe Wallet Configuration (placeholder)
+// MSafe Wallet Configuration
 export const msafe: AptosWalletConfig = {
+  ...metadata_MSafe,
   key: 'msafe',
-  name: 'MSafe',
-  remark: 'Multi-signature wallet for Aptos',
-  icon: 'https://www.msafe.org/favicon.ico', // Will be replaced with local assets
-  extensions: false, // MSafe is primarily web-based
-  app: {
-    link: 'https://www.msafe.org/',
-  },
+  supportChainTypes: [ChainType.SVM],
+};
+
+// RimoSafe Wallet Configuration
+export const rimoSafe: AptosWalletConfig = {
+  ...metadata_RimoSafe,
+  key: 'rimoSafe',
   supportChainTypes: [ChainType.SVM],
 };
 
@@ -79,6 +66,7 @@ export const builtInWallets: AptosWalletConfig[] = [
   aptosConnect,
   okx,
   msafe,
+  rimoSafe,
 ];
 
 // Register built-in wallets

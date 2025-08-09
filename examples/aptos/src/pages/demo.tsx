@@ -6,7 +6,7 @@ import {
   aptosConnect,
   okx,
   msafe,
-  useAptosProvider,
+  useWallet,
 } from '@ant-design/web3-aptos';
 import { Button, message, Card, Space, Typography } from 'antd';
 import { useState } from 'react';
@@ -18,7 +18,8 @@ const App = () => {
   const [signature, setSignature] = useState<string>('');
   const [transactionHash, setTransactionHash] = useState<string>('');
 
-  const provider = useAptosProvider();
+  const walletContext = useWallet();
+  const provider = walletContext.wallet?.adapter;
   const account = useAccount();
 
   const handleSignMessage = async () => {

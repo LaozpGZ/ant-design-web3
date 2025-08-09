@@ -5,7 +5,7 @@ export interface AptosWalletAdapter {
   url: string;
   icon: string;
   readyState: 'Installed' | 'NotDetected' | 'Loadable' | 'Unsupported';
-  isReadyState: (state: string) => boolean;
+  isReadyState: boolean;
   
   connect(): Promise<void>;
   disconnect(): Promise<void>;
@@ -21,8 +21,8 @@ export interface AptosWalletAdapter {
   
   network: {
     name: string;
-    chainId: string;
-    url: string;
+    chainId?: string;
+    url?: string;
   } | null;
   
   connected: boolean;

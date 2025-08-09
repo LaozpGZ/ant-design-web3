@@ -46,6 +46,16 @@ export abstract class BaseWalletAdapter extends EventEmitter<WalletAdapterEvents
     return !!this.account;
   }
 
+  get connecting(): boolean {
+    return this._connecting;
+  }
+
+  protected _connecting: boolean = false;
+
+  get isReadyState(): boolean {
+    return this.readyState === WalletReadyState.Installed || this.readyState === WalletReadyState.Loadable;
+  }
+
   abstract account: AptosAccount | null;
   abstract network: { name: string; chainId?: string; url?: string } | null;
 

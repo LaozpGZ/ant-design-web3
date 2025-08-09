@@ -1,9 +1,10 @@
 import React, { useMemo, type FC, type PropsWithChildren } from 'react';
 import { Web3ConfigProvider } from '@ant-design/web3-common';
 import type { Locale } from '@ant-design/web3-common';
-import { WalletProvider } from '@aptos-labs/wallet-adapter-react';
+import { AptosWalletAdapterProvider } from '@aptos-labs/wallet-adapter-react';
 
-import { aptos, type AptosChainConfig } from '../chains';
+import { aptos } from '../chains';
+import type { AptosChainConfig } from '../types';
 import type { AptosWalletConfig } from '../wallets/types';
 
 export interface AptosWeb3ConfigProviderProps {
@@ -14,10 +15,6 @@ export interface AptosWeb3ConfigProviderProps {
   
   // Aptos WalletProvider specific
   autoConnect?: boolean;
-  optInWallets?: string[];
-  dappConfig?: {
-    network?: string;
-  };
 }
 
 export const AptosWeb3ConfigProvider: FC<PropsWithChildren<AptosWeb3ConfigProviderProps>> = ({
@@ -26,8 +23,6 @@ export const AptosWeb3ConfigProvider: FC<PropsWithChildren<AptosWeb3ConfigProvid
   wallets = [],
   balance = false,
   autoConnect = true,
-  optInWallets,
-  dappConfig,
   children,
 }) => {
   const aptosWalletAdapters = useMemo(() => {
@@ -41,20 +36,17 @@ export const AptosWeb3ConfigProvider: FC<PropsWithChildren<AptosWeb3ConfigProvid
       locale,
       chains,
       availableWallets: wallets,
-      balance,
+      balance: balance as any, // Use any for now since balance has different types in different contexts
     };
   }, [locale, chains, wallets, balance]);
 
   return (
     <Web3ConfigProvider {...web3ConfigProviderProps}>
-      <WalletProvider 
-        wallets={aptosWalletAdapters}
-        autoConnect={autoConnect}
-        optInWallets={optInWallets}
-        dappConfig={dappConfig}
+      <AptosWalletAdapterProvider 
+        {...({ plugins: aptosWalletAdapters, autoConnect } as any)}
       >
         {children}
-      </WalletProvider>
+      </AptosWalletAdapterProvider>
     </Web3ConfigProvider>
   );
 };
